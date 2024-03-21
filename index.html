@@ -8,17 +8,31 @@
         * {
             padding: 0;
             margin: 0;
+            background: #b4d294;
         }
 
         canvas {
+            display: block;
             background: #fff;
             border: 1px solid black;
-            margin: 0 auto;
+            margin: 10px auto;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.45);
+        }
+
+        button {
+            display: block;
+            margin: 60px auto;
+            background: rgb(76 136 76);
+            padding: 20px 40px;
+            border-radius: 10px;
+            color: white;
+            border: none;
         }
     </style>
 </head>
 <body>
    <canvas id="myCanvas" width="600" height="400"></canvas> 
+   <button id="runBtn">Start</button>
    <script src="brickbreaker.js"></script>
 </body>
 </html>
