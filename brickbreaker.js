@@ -1,6 +1,6 @@
+const canvas  = document.getElementById('myCanvas');
+const ctx     = canvas.getContext('2d');
 const playBtn = document.getElementById('runBtn');
-const canvas = document.getElementById('myCanvas');
-const ctx = canvas.getContext('2d');
 
 let ball = {
     x: canvas.width / 2,
@@ -17,12 +17,10 @@ let ball = {
         this.x += this.dx
         this.y += this.dy
 
-        // Collision Check Top and Bottom of the canvas
         if ((this.y + this.dy) < 0 || (this.y + this.dy) > canvas.height) {
             this.dy = this.dy * -1
         }
 
-        // Collision Check Left and Right of Canvas
         if ((this.x + this.dx) < 0 || (this.x + this.dx) > canvas.width) {
             this.dx = this.dx * -1
         }
