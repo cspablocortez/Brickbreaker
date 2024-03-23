@@ -3,6 +3,39 @@ const ctx     = canvas.getContext('2d');
 const playBtn = document.getElementById('runBtn');
 let interval;
 
+let brickProperties = {
+    rowCount: 3,
+    columnCount: 5,
+    width: 75,
+    height: 20,
+    padding: 10,
+    offsetTop: 30,
+    offsetLeft: 30
+}
+
+const bricks = []
+for (let c = 0; c < brickProperties.columnCount; c++) {
+    bricks[c] = [];
+    for (let r = 0; r < brickProperties.rowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0};
+    }
+}
+
+function drawBricks() {
+    for (let c = 0; c < brickProperties.columnCount; c++) {
+        for (let r = 0; r < brickProperties.rowCount; r++) {
+            bricks[c][r].x = 0;
+            bricks[c][r].y = 0;
+            ctx.beginPath();
+            ctx.rect(0, 0, brickProperties.width, brickProperties.height);
+            ctx.fillStyle = 'rgb(76 136 76)';
+            ctx.fill();
+            ctx.closePath();
+        }
+    }
+}
+
+
 let ball = {
     x: canvas.width / 2,
     y: canvas.height - 30,
@@ -26,9 +59,13 @@ let ball = {
         if (this.y + this.dy < this.r) {
             this.dy = -this.dy;
         } else if (this.y + this.dy > canvas.height - (this.r / 2)) {
-            alert('GAME OVER');
-            document.location.reload();
-            clearInterval(interval);
+            if (this.x > paddle.x && this.x < paddle.x + paddle.width) {
+                this.dy = -this.dy;
+            } else {
+                alert('GAME OVER');
+                document.location.reload();
+                clearInterval(interval);
+            } 
         }
     }
 }
