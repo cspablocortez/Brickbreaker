@@ -1,0 +1,49 @@
+* {
+    padding: 0;
+    margin: 0;
+    background: #b4d294;
+}
+
+canvas {
+    display: block;
+    background: #dbe0b1;
+    margin: 5% auto;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.45);
+    transform: scale(0.75);
+    width: 100%;
+}
+
+button {
+    display: block;
+    margin: 60px auto;
+    background: rgb(76 136 76);
+    padding: 20px 40px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.45);
+    background: rgba(76 136 76, 0.9);
+}
+
+.disabled {
+    opacity: 0.5;
+}
+
+.disabled:hover {
+    box-shadow: none;
+    cursor: default;
+}
+
+@media (min-width: 680px) {
+    canvas {
+        margin: 5% auto;
+        transform: scale(1);
+        width: auto;
+    }
+}

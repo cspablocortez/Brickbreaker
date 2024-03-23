@@ -1,6 +1,6 @@
-const playBtn = document.getElementById('runBtn')
-const canvas = document.getElementById('myCanvas')
-const ctx = canvas.getContext('2d')
+const playBtn = document.getElementById('runBtn');
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
 
 let ball = {
     x: canvas.width / 2,
@@ -30,17 +30,17 @@ let ball = {
 }
 
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    ball.draw()
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ball.draw();
 }
 
 function startGame() {
-    const interval = setInterval(draw, 10)
-    console.log(`Interval: ${interval}`)
+    const interval = setInterval(draw, 10);
+    console.log(`Interval: ${interval}`);
 }
 
 playBtn.addEventListener('click', () => {
     startGame();
     playBtn.disabled = true;
-    playBtn.classList.add('disabled')
+    playBtn.classList.add('disabled');
 })
