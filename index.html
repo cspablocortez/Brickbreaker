@@ -13,9 +13,8 @@
 
         canvas {
             display: block;
-            background: #fff;
-            border: 1px solid black;
-            margin: 10px auto;
+            background: #dbe0b1;
+            margin: 5% auto;
             box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.45);
         }
 
@@ -27,12 +26,29 @@
             border-radius: 10px;
             color: white;
             border: none;
+            text-transform: uppercase;
+            font-size: 1.25rem;
+        }
+
+        button:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.45);
+            background: rgba(76 136 76, 0.9);
+        }
+
+        .disabled {
+            opacity: 0.5;
+        }
+
+        .disabled:hover {
+            box-shadow: none;
+            cursor: default;
         }
     </style>
 </head>
 <body>
    <canvas id="myCanvas" width="600" height="400"></canvas> 
-   <button id="runBtn">Start</button>
+   <button id="runBtn">Play</button>
    <script src="brickbreaker.js"></script>
 </body>
 </html>

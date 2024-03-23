@@ -1,3 +1,4 @@
+const playBtn = document.getElementById('runBtn')
 const canvas = document.getElementById('myCanvas')
 const ctx = canvas.getContext('2d')
 
@@ -10,7 +11,7 @@ let ball = {
     draw: function() {
         ctx.beginPath()
         ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2)
-        ctx.fillStyle = '#0000ff'
+        ctx.fillStyle = 'rgb(76 136 76)'
         ctx.fill()
         ctx.closePath()
         this.x += this.dx
@@ -35,9 +36,11 @@ function draw() {
 
 function startGame() {
     const interval = setInterval(draw, 10)
+    console.log(`Interval: ${interval}`)
 }
 
-document.getElementById('runBtn').addEventListener('click', () => {
-    startGame()
-    this.disabled = true
+playBtn.addEventListener('click', () => {
+    startGame();
+    playBtn.disabled = true;
+    playBtn.classList.add('disabled')
 })
