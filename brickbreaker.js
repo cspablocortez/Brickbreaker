@@ -5,7 +5,7 @@ let interval;
 
 let brickProperties = {
     rowCount: 3,
-    columnCount: 5,
+    columnCount: 6,
     width: 75,
     height: 20,
     padding: 10,
@@ -24,17 +24,18 @@ for (let c = 0; c < brickProperties.columnCount; c++) {
 function drawBricks() {
     for (let c = 0; c < brickProperties.columnCount; c++) {
         for (let r = 0; r < brickProperties.rowCount; r++) {
-            bricks[c][r].x = 0;
-            bricks[c][r].y = 0;
+            const brickX = c * (brickProperties.width + brickProperties.padding) + brickProperties.offsetLeft;
+            const brickY = r * (brickProperties.height + brickProperties.padding) + brickProperties.offsetTop;
+            bricks[c][r].x = brickX;
+            bricks[c][r].y = brickY;
             ctx.beginPath();
-            ctx.rect(0, 0, brickProperties.width, brickProperties.height);
+            ctx.rect(brickX, brickY, brickProperties.width, brickProperties.height);
             ctx.fillStyle = 'rgb(76 136 76)';
             ctx.fill();
             ctx.closePath();
         }
     }
 }
-
 
 let ball = {
     x: canvas.width / 2,
@@ -95,6 +96,7 @@ let paddle = {
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBricks();
     ball.draw();
     paddle.draw();
 }
