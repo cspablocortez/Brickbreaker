@@ -131,3 +131,13 @@ function keyUpHandler(e) {
     }
 }
 
+function collisionDetection() {
+    for (let c = 0; c < brickProperties.columnCount; c++) {
+        for (let r = 0; r < brickProperties.rowCount; r++) {
+            const b = bricks[c][r];
+            if (ball.x > b.x && x < b.x + brickProperties.width && ball.y > b.y && ball.y < b.y + brickProperties.height) {
+                ball.dy = -ball.dy;
+            }
+        }
+    }
+}
