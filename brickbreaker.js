@@ -13,26 +13,28 @@ let brickProperties = {
     offsetLeft: 30
 }
 
-const bricks = []
+let bricks = []
 for (let c = 0; c < brickProperties.columnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickProperties.rowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0};
+        bricks[c][r] = { x: 0, y: 0, status: 1 };
     }
 }
 
 function drawBricks() {
     for (let c = 0; c < brickProperties.columnCount; c++) {
         for (let r = 0; r < brickProperties.rowCount; r++) {
-            const brickX = c * (brickProperties.width + brickProperties.padding) + brickProperties.offsetLeft;
-            const brickY = r * (brickProperties.height + brickProperties.padding) + brickProperties.offsetTop;
-            bricks[c][r].x = brickX;
-            bricks[c][r].y = brickY;
-            ctx.beginPath();
-            ctx.rect(brickX, brickY, brickProperties.width, brickProperties.height);
-            ctx.fillStyle = 'rgb(76 136 76)';
-            ctx.fill();
-            ctx.closePath();
+            if (bricks[c][r] === 1) {
+                const brickX = c * (brickProperties.width + brickProperties.padding) + brickProperties.offsetLeft;
+                const brickY = r * (brickProperties.height + brickProperties.padding) + brickProperties.offsetTop;
+                bricks[c][r].x = brickX;
+                bricks[c][r].y = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickProperties.width, brickProperties.height);
+                ctx.fillStyle = 'rgb(76 136 76)';
+                ctx.fill();
+                ctx.closePath();
+            }
         }
     }
 }
@@ -99,6 +101,7 @@ function draw() {
     drawBricks();
     ball.draw();
     paddle.draw();
+    collisionDetection();
 }
 
 function startGame() {
@@ -135,8 +138,12 @@ function collisionDetection() {
     for (let c = 0; c < brickProperties.columnCount; c++) {
         for (let r = 0; r < brickProperties.rowCount; r++) {
             const b = bricks[c][r];
-            if (ball.x > b.x && x < b.x + brickProperties.width && ball.y > b.y && ball.y < b.y + brickProperties.height) {
-                ball.dy = -ball.dy;
+
+            if (b.status === 1) {
+                if (ball.x > b.x && ball.x < b.x + brickProperties.width && ball.y > b.y && ball.y < b.y + brickProperties.height) {
+                    ball.dy = -ball.dy;
+                    b.status = 0;
+                }
             }
         }
     }
